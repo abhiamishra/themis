@@ -10,5 +10,5 @@ client = pymongo.MongoClient(CONN)
 themis_db = client["themis_db"]
 
 # collections
-opinions_col = themis_db["opinions"]
+opinions_col = themis_db["opinions1"]
 
