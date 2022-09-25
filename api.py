@@ -17,35 +17,24 @@ app.add_middleware(
 )
 
 
-@app.get("/year/{year}")
-def get_by_year(year: int):
-    cursor = opinions_col.find({"year": year}).sort("time", -1)
-    opinions = []
-    for element in cursor:
-        opinions.append(element)
-    return jsonify(opinions)
+@app.get("/filter")
+def get_filter(category: str, year: int, justice: str):
+    cond = []
 
+    if year > 0:
+        cond.append({"year": year})
 
-@app.get("/justice/{justice}/{opinion}")
-def get_by_justice(justice: str, opinion: str):
-    if opinion != "All":
-        query = {"$and": [{"justices.name": justice}, {"justices.opinion": opinion}]}
+    if category != "All":
+        cond.append({"category": category})
+
+    if justice != "All":
+        cond.append({"justices.name": justice})
+
+    if len(cond) > 0:
+        query = {"$and": cond}
     else:
-        query = {"justices.name": justice}
-    cursor = opinions_col.find(query).sort("time", -1)
+        query = {}
 
-    opinions = []
-    for element in cursor:
-        opinions.append(element)
-    return jsonify(opinions)
-
-
-@app.get("/category/{category}/{year}")
-def get_by_justice(category: str, year: int):
-    if year != 0:
-        query = {"$and": [{"category": category}, {"year": year}]}
-    else:
-        query = {"category": category}
     cursor = opinions_col.find(query).sort("time", -1)
 
     opinions = []
@@ -56,16 +45,18 @@ def get_by_justice(category: str, year: int):
 
 @app.get("/plot")
 def get_plot(justice: str, category: str):
-
-    query = {}
+    cond = []
 
     if justice != "All":
-        query["justices.name"] = justice
+        cond.append({"justices.name": justice})
 
     if category != "All":
-        query["category"] = category
+        cond.append({"category": category})
 
-    print(query)
+    if len(cond) > 0:
+        query = {"$and": cond}
+    else:
+        query = {}
 
     cursor = opinions_col.find(query).sort("time", 1)
 
