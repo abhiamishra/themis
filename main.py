@@ -45,4 +45,5 @@ def get_by_justice(category: str, year: int):
 
 
 if __name__ == "__main__":
+    print(__package__)
     uvicorn.run(app, host="localhost", port=8000)

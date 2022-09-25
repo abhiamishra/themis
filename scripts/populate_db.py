@@ -1,5 +1,6 @@
 import datetime
-
+import sys
+sys.path.append('C:/UTD/Senior Year/Fall Semester 2022/themis')  
 from utils.date import unix_time
 from db import opinions_col
 

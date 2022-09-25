@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 
 from opinion import OpinionBuilder, insert_opinion
-from textsummary import download_pdf, extract_pdf, summarize
+from textsummary import download_pdf, extract_pdf, summarize, update_category, just_choice
 from db import opinions_col
 from utils.date import unix_time
 import time
@@ -15,7 +15,7 @@ def crawl_year(year: int):
     #cells = ["cell6", "cell5", "cell4", "cell3", "cell1", "cell12", "cell11", "cell10"]
     cells = ["cell6"]
     i=0
-    for cell in cells:
+    for cell in cells:  
         table = soup.find(id=cell).div.table
         for tr in table.find_all("tr"):
             #print(i)
@@ -59,11 +59,9 @@ def crawl_year(year: int):
                 "longsum": text[0],
                 "history": text[1],
                 "shortsum": text[2],
-                "category": "Category",
-                "justices": []
+                "category": update_category(docket),
+                "justices": just_choice(date)
             }
-
-            o["justices"].append({"name": "Ruth Bader Ginsburg", "opinion": "majority"})
 
             opinions_col.insert_one(o)
 
