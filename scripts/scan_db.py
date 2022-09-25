@@ -1,5 +1,5 @@
 from db import opinions_col
 
-documents = opinions_col.find({})
-for document in documents:
+cursor = opinions_col.find({}).sort("time", 1)
+for document in cursor:
     print(document)
