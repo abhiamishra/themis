@@ -16,7 +16,10 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-
+@app.get("/")
+def home():
+    return {"message" : "THEMIS"}
+    
 @app.get("/filter")
 def get_filter(category: str, year: int, justice: str):
     cond = []
