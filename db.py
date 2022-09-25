@@ -1,7 +1,7 @@
 import pymongo as pymongo
 import dns
 
-CONN = "mongodb+srv://themis:SDGXRHVSWQGHNDZW@cluster0.o6smuif.mongodb.net/?retryWrites=true&w=majority"
+CONN = "mongodb+srv://themis:SDGXRHVSWQGHNDZW@cluster0.o6smuif.mongodb.net/?retryWrites=true&w=majority&connectTimeoutMS=60000"
 
 # client
 client = pymongo.MongoClient(CONN)
