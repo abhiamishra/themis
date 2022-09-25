@@ -1,0 +1,25 @@
+{
+    "year": 2022,
+    "time": 234523452345,
+    "date": "6/20/2020",
+    "title": "West Virginia v. EPA",
+    "docket": "20-1530",
+    "summary": "This one is about west virginia vs epa.",
+    "history": "This happened because of the epa",
+    "link": "https://www.supremecourt.gov/opinions/21pdf/20-1530_new_l537.pdf",
+    "category": "industry",
+    "justices": [
+        {
+            "name": "Amy Coney Barrett",
+            "opinion": "majority"
+        },
+        {
+            "name": "Ketanji Brown Jackson",
+            "opinion": "concurring"
+        },
+        {
+            "name": "John G. Roberts",
+            "opinion": "concurring"
+        }
+    ]
+}
